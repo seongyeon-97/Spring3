@@ -7,19 +7,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.sql.DataSource;
 
-import com.sy.s1.util.DBConnector;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+
+
 
 public class BankbookDAO {
 	
-	private DBConnector dbConnector;
-	
-	public BankbookDAO() {
-		dbConnector = new DBConnector();
-	}
-	
+	@Autowired
+	private DataSource dataSource;
+		
 	public int setInsert(BankbookDTO bankbookDTO) {
-		Connection con = dbConnector.getConnect();
+		Connection con = null;
+		try {
+			con = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		int result = 0;
@@ -36,13 +44,19 @@ public class BankbookDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			dbConnector.disConnect(st, con);
+			
 		}
 		return result;
 	}
 		
 	public ArrayList<BankbookDTO> getList() {
-		Connection con = dbConnector.getConnect();
+		Connection con = null;
+		try {
+			con = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		ArrayList<BankbookDTO> ar = new ArrayList<BankbookDTO>();
@@ -63,13 +77,19 @@ public class BankbookDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			dbConnector.disConnect(rs, st, con);
+			
 		}
 		return ar;
 	}
 	
 	public BankbookDTO getSelect(BankbookDTO dto) {
-		Connection con = dbConnector.getConnect();
+		Connection con = null;
+		try {
+			con = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		BankbookDTO result = null;
@@ -91,7 +111,7 @@ public class BankbookDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			dbConnector.disConnect(rs, st, con);
+			
 		}
 		
 		return result;
