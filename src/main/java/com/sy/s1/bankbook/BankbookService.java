@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sy.s1.util.DBConnector;
 
-@Service
+
 public class BankbookService {
 	
 	private BankbookDAO bankbookDAO;
 	
-	@Autowired
+	
 	public void setBankbookDAO(BankbookDAO bankbookDAO) {
 		this.bankbookDAO = bankbookDAO;
 	}

@@ -10,5 +10,6 @@
 <body>
 	<c:import url="./temp/boot_nav.jsp"></c:import>
 	<h1>Renewal</h1>
+	<img alt="test" src="./resources/images/son2.jpg">
 </body>
 </html>

@@ -13,21 +13,27 @@ import org.springframework.stereotype.Repository;
 
 import com.sy.s1.util.DBConnector;
 
-@Repository
+
 public class BankbookDAO {
 	
 	private DBConnector dbConnector;
 	
-	public BankbookDAO() {
-		
-	}
 	
-	@Autowired
-	public BankbookDAO(DBConnector dbConnector) {
+	
+	public BankbookDAO(DBConnector dbConnector, int num, String name) {
 		this.dbConnector = dbConnector;
 	}
 	
 	
+	
+	
+	public void setDbConnector(DBConnector dbConnector) {
+		this.dbConnector = dbConnector;
+	}
+
+
+
+
 	public int setInsert(BankbookDTO bankbookDTO) {
 		Connection con = dbConnector.getConnect();
 		PreparedStatement st = null;
