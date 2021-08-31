@@ -8,15 +8,25 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.sy.s1.util.DBConnector;
 
+@Repository
 public class BankbookDAO {
 	
 	private DBConnector dbConnector;
 	
 	public BankbookDAO() {
-		dbConnector = new DBConnector();
+		
 	}
+	
+	@Autowired
+	public BankbookDAO(DBConnector dbConnector) {
+		this.dbConnector = dbConnector;
+	}
+	
 	
 	public int setInsert(BankbookDTO bankbookDTO) {
 		Connection con = dbConnector.getConnect();

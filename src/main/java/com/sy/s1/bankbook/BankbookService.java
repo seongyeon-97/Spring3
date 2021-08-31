@@ -2,15 +2,24 @@ package com.sy.s1.bankbook;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sy.s1.util.DBConnector;
+
+@Service
 public class BankbookService {
 	
 	private BankbookDAO bankbookDAO;
 	
-	public BankbookService() {
-		bankbookDAO = new BankbookDAO();
+	@Autowired
+	public void setBankbookDAO(BankbookDAO bankbookDAO) {
+		this.bankbookDAO = bankbookDAO;
 	}
+
+
+
 	
 	public ArrayList<BankbookDTO> getList() {
 		ArrayList<BankbookDTO> ar = bankbookDAO.getList();
