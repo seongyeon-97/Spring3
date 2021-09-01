@@ -11,10 +11,9 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.stereotype.Repository;
 
-
-
-
+@Repository
 public class BankbookDAO {
 	
 	@Autowired
