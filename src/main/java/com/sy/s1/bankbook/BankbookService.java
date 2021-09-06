@@ -23,8 +23,12 @@ public class BankbookService {
 	}
 
 	public List<BankbookDTO> getList(Pager pager) {
+		System.out.println(pager.getKind());
+		System.out.println(pager.getSearch());
+		//totalCount 구해오기
+		Long totlaCount = bankbookDAO.getCount(pager);
+		pager.makeNum(totlaCount);
 		pager.makeRow();
-		pager.makeNum();
 		return bankbookDAO.getList(pager);
 	}
 

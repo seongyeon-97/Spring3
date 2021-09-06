@@ -11,18 +11,41 @@ public class Pager {
 	private Long startNum;
 	private Long lastNum;
 	
+	private Long totalPage;
 	
+	private String kind;
+	private String search;
+	
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		if(this.search == null) {
+			this.search = "";
+		}
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
 	public void makeRow() {		
 		this.startRow = (this.getPn() - 1)*this.getPerPage()+1;
 		this.lastRow = this.getPn()*this.getPerPage();
 	}
 	
-	public void makeNum() {
+	public void makeNum(Long totalCount) {
 		//1. totalCount 구하기
-		Long totalCount = 210L;
+		//Long totalCount = 210L;
 		
 		//2. totalPage 구하기
-		Long totalPage = totalCount/this.getPerPage();
+		totalPage = totalCount/this.getPerPage();
 		if(totalCount%this.getPerPage() != 0) {
 			//totalPage = totalPage + 1;
 			totalPage++;
@@ -35,6 +58,10 @@ public class Pager {
 		}
 		
 		//4. pn으로 curblock(현제블럭) 번호 구하기
+		if(totalPage<this.getPn()) {
+			this.setPn(totalPage);
+		}
+		
 		Long curBlock = this.getPn()/5;
 		if(this.getPn()%5 != 0){
 			curBlock++;
@@ -43,9 +70,15 @@ public class Pager {
 		//5. curBlock로 시작번호와 마지막 번호 구하기
 		this.lastNum = curBlock*5;
 		this.startNum = (curBlock-1)*5+1;
-		
+		if(curBlock == totalBlock) {
+			this.lastNum = totalPage;
+		}
 	}
 	
+	public Long getTotalPage() {
+		return totalPage;
+	}
+
 	public Long getStartNum() {
 		return startNum;
 	}

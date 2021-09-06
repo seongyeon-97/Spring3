@@ -39,7 +39,10 @@ public class BankbookDAO {
 	}
 	
 	public BankbookDTO getSelect(BankbookDTO dto) {
-		return sqlSession.selectOne(NAMESPACE+"getSelect", dto);
-		
+		return sqlSession.selectOne(NAMESPACE+"getSelect", dto);		
+	}
+	
+	public Long getCount(Pager pager) {
+		return sqlSession.selectOne(NAMESPACE+"getCount", pager);
 	}
 }
